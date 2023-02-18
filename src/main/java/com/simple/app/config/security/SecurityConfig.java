@@ -36,8 +36,9 @@ public class SecurityConfig {
   @Bean
   public WebSecurityCustomizer webSecurity() {
     final var exclusionRegex = "^(?!%s|%s).*$".formatted(
-      "/api/messages/protected",
-      "/api/messages/admin"
+      "/api/v1/messages/protected",
+      "/api/v1/messages/admin",
+      "/api/v1/payment"
     );
 
     return web ->
@@ -48,7 +49,7 @@ public class SecurityConfig {
   @Bean
   public SecurityFilterChain httpSecurity(final HttpSecurity http) throws Exception {
     return http.authorizeRequests()
-      .antMatchers("/api/messages/protected", "/api/messages/admin", "/callback")
+      .antMatchers("/api/v1/messages/protected", "/api/v1/messages/admin", "/callback", "/api/v1/payment")
         .authenticated()
       .anyRequest()
         .permitAll()
