@@ -3,7 +3,8 @@
 application:
   audience: ${env.AUTH0_AUDIENCE}
   client-origin-url: ${env.CLIENT_ORIGIN_URL}
-
+  stripe-api-key: ${env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY}
+  stripe-secret-key: ${env.NEXT_PUBLIC_STRIPE_SECRET_KEY}
 server:
   error:
     whitelabel:
