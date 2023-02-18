@@ -1,8 +1,7 @@
-package com.example.helloworld.services;
+package com.simple.app.authentication.service;
 
+import com.simple.app.authentication.model.Message;
 import org.springframework.stereotype.Service;
-
-import com.example.helloworld.models.Message;
 
 @Service
 public class MessageService {

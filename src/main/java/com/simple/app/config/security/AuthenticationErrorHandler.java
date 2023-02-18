@@ -1,4 +1,4 @@
-package com.example.helloworld.config.security;
+package com.simple.app.config.security;
 
 import java.io.IOException;
 
@@ -6,14 +6,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
 
-import com.example.helloworld.models.ErrorMessage;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.simple.app.authentication.model.ErrorMessage;
 
 import lombok.RequiredArgsConstructor;
 
@@ -21,7 +21,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AuthenticationErrorHandler implements AuthenticationEntryPoint {
 
-  private final ObjectMapper mapper;
+  private final Gson mapper;
 
   @Override
   public void commence(
@@ -30,7 +30,7 @@ public class AuthenticationErrorHandler implements AuthenticationEntryPoint {
     final AuthenticationException authException
   ) throws IOException, ServletException {
     final var errorMessage = ErrorMessage.from("Requires authentication");
-    final var json = mapper.writeValueAsString(errorMessage);
+    final var json = mapper.toJson(errorMessage);
 
     response.setStatus(HttpStatus.UNAUTHORIZED.value());
     response.setContentType(MediaType.APPLICATION_JSON_VALUE);

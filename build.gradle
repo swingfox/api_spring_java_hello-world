@@ -36,6 +36,7 @@ repositories {
 }
 
 dependencies {
+  implementation 'org.jetbrains:annotations:20.1.0'
   annotationProcessor('org.projectlombok:lombok')
   annotationProcessor('org.springframework.boot:spring-boot-configuration-processor')
   compileOnly('org.projectlombok:lombok')
@@ -46,7 +47,12 @@ dependencies {
   implementation('me.paulschwarz:spring-dotenv:2.4.1')
   implementation('org.springframework.boot:spring-boot-starter-oauth2-resource-server')
   implementation('org.springframework.boot:spring-boot-starter-security')
-  implementation('org.springframework.boot:spring-boot-starter-web')
+  implementation('org.springframework.boot:spring-boot-starter-web'){
+    exclude group: 'org.springframework.boot', module: 'spring-boot-starter-json'
+  }
+  implementation('org.springframework.boot:spring-boot-starter-validation')
+  implementation 'com.google.code.gson:gson:2.10.1'
+  implementation group: 'com.stripe', name: 'stripe-java', version: '22.8.0'
 
   testImplementation('org.springframework.boot:spring-boot-starter-test')
   testImplementation('org.springframework.security:spring-security-test')

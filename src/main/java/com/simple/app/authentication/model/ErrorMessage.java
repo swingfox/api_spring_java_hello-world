@@ -1,4 +1,4 @@
-package com.example.helloworld.models;
+package com.simple.app.authentication.model;
 
 import lombok.Value;
 

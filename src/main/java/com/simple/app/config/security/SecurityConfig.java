@@ -1,5 +1,6 @@
-package com.example.helloworld.config.security;
+package com.simple.app.config.security;
 
+import com.simple.app.config.ApplicationProperties;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.OAuth2ResourceServerProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,8 +19,6 @@ import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
 import org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter;
 import org.springframework.security.web.SecurityFilterChain;
-
-import com.example.helloworld.config.ApplicationProperties;
 
 import lombok.RequiredArgsConstructor;
 
@@ -49,7 +48,7 @@ public class SecurityConfig {
   @Bean
   public SecurityFilterChain httpSecurity(final HttpSecurity http) throws Exception {
     return http.authorizeRequests()
-      .antMatchers("/api/messages/protected", "/api/messages/admin")
+      .antMatchers("/api/messages/protected", "/api/messages/admin", "/callback")
         .authenticated()
       .anyRequest()
         .permitAll()
