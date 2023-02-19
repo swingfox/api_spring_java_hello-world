@@ -1,0 +1,12 @@
+version: "3.8"
+
+services:
+  app:
+    container_name: docker-spring-auth-payment-app
+    image: docker-spring-auth-payment-image
+    build:
+      context: .
+    ports:
+      - 6060:6060
+    environment:
+      PORT: 6060
